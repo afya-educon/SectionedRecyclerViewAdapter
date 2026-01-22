@@ -1,7 +1,7 @@
 // Script from: https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle
 
 // ./gradlew clean build generateRelease
-apply plugin: 'maven'
+//apply plugin: 'maven'
 
 def groupId = project.PUBLISH_GROUP_ID
 def artifactId = project.PUBLISH_ARTIFACT_ID
@@ -32,15 +32,20 @@ task androidSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
 }
 
-uploadArchives {
-    repositories.mavenDeployer {
-        pom.groupId = groupId
-        pom.artifactId = artifactId
-        pom.version = version
-        // Add other pom properties here if you want (developer details / licenses)
-        repository(url: "file://${localReleaseDest}")
-    }
-}
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        pom.groupId = groupId
+//        pom.artifactId = artifactId
+//        pom.version = version
+//
+//        repository(url: "https://maven.pkg.github.com/AFYA_ORG/sectioned-recyclerview-adapter") {
+//            authentication(
+//                    userName: project.findProperty("gpr.user"),
+//                    password: project.findProperty("gpr.key")
+//            )
+//        }
+//    }
+//}
 
 task zipRelease(type: Zip) {
     from localReleaseDest
@@ -55,11 +60,11 @@ task generateRelease {
     }
 }
 
-generateRelease.dependsOn(uploadArchives)
+//generateRelease.dependsOn(uploadArchives)
 generateRelease.dependsOn(zipRelease)
 
 
-artifacts {
-    archives androidSourcesJar
-    archives androidJavadocsJar
-}
+//artifacts {
+//    archives androidSourcesJar
+//    archives androidJavadocsJar
+//}
